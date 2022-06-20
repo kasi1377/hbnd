@@ -42,6 +42,7 @@ mysqli_select_db($conn, $db);
                 <span onclick = "myFunction()"><i id="hide1" class="fa fa-eye"></i>
                 <i id="hide2" class="fa fa-eye-slash"></i></span>
             </div>
+            
             <button type="submit" class="btn-info" name="submit" value ="LOGIN" style="color: blueviolet;">LOGIN</button> 
             
             <Button type="button" class="btn btn-dark"><a href="registration.php" >Create an account</a></Button>
