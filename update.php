@@ -12,7 +12,7 @@ include 'connect.php';
 // $conn= mysqli_connect($host, $user, $password);
 // mysqli_select_db($conn, $db);
 $id = $_GET['updateid'];
-$sql = "select * from democlass1 where id= $id";
+$sql = "select * from registertable1 where id= $id";
 $result= mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $Name = $row['name'];
@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
     $Mobile=$_POST['mobile'];
     $Password=$_POST['password'];
 
-    $sql ="UPDATE democlass1 set id =$id,name = '$Name',email= '$Email',mobile ='$Mobile',password='$Password' where id = $id";
+    $sql ="UPDATE registertable1 set id =$id,name = '$Name',email= '$Email',mobile ='$Mobile',password='$Password' where id = $id";
     $result = mysqli_query($conn, $sql);
     if($result){
         // echo "Updated successfully!!";
