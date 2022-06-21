@@ -3,7 +3,7 @@ include 'connect.php';
 if(isset($_GET['deleteid'])){
     $id= $_GET['deleteid'];
 
-    $sql = "DELETE FROM democlass1 WHERE id = $id";
+    $sql = "DELETE FROM registertable1 WHERE id = $id";
     $result = mysqli_query($conn, $sql);
     if ($result){
         // echo "Record deleted successfully";
