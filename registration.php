@@ -9,24 +9,7 @@ $db = "register";
 $conn= mysqli_connect($host, $user, $password);
 mysqli_select_db($conn, $db);
 
-    if(isset($_POST['create'])){
-        $Username=$_POST['username'];
-        $Email=$_POST['email'];
-        $Mobile=$_POST['mobile'];
-        $Password=$_POST['password'];
-        $encrypted_pwd = md5($Password);
-            
-        $sql ="insert into  registertable1 (username,email,mobile,password) values
-        ('$Username','$Email','$Mobile','$encrypted_pwd')";
-        $result = mysqli_query($conn, $sql);
-        if($result){
-            // echo "Data inserted successfully!!";
-            header('location:login.php');
-        } 
-        else{
-            die(mysqli_error($conn));
-        }
-    }
+    
     
 ?>
 
@@ -73,13 +56,13 @@ mysqli_select_db($conn, $db);
             </label>
         </div> <br>
         <div class ="g-recaptcha" data-sitekey ="6Lf9HYUgAAAAACE9ojUB1fjYYJ9-CQT_v1Ssl4qx"></div>
-        <input type="submit" class="btn btn-light" name="create" value ="create" style="color: blueviolet;" >
+        <input type="submit" class="btn btn-light" name="create" value ="Register" style="color: blueviolet;" >
         <button class="btn btn-dark"><a href="login.php" class ="text-light"> Back to  login</a>
     </form>
     <!-- $secretKey ="6Lf9HYUgAAAAABWEbTD_sJogxi0UBomUbGmeiGEk"; -->
     </div>
     <?php
-if(! isset($_POST['create']) ) exit('You dont have any submitted data');
+if(! isset($_POST['create']) ) exit();
  
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
 {
@@ -90,17 +73,33 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
     $response = json_decode($verify);
     if($response->success)
     {
-        echo '<script>alert("Google reCAPTACHA verified")</script>';
- 
+        if(isset($_POST['create'])){
+            $Username=$_POST['username'];
+            $Email=$_POST['email'];
+            $Mobile=$_POST['mobile'];
+            $Password=$_POST['password'];
+            $encrypted_pwd = md5($Password);
+                
+            $sql ="insert into  registertable1 (username,email,mobile,password) values
+            ('$Username','$Email','$Mobile','$encrypted_pwd')";
+            $result = mysqli_query($conn, $sql);
+            if($result){
+                // echo "Data inserted successfully!!";
+                header('location:login.php');
+            } 
+            else{
+                die(mysqli_error($conn));
+            }
+        }
     }
     else
     {
-        exit('Google reCAPTCHA verification failed. please try again');
+        exit();
     }
 }
 else
 {
-    exit('Please check recaptcha box');
+    exit();
 }    
 ?>
    
@@ -113,7 +112,7 @@ else
     </div> -->
     <script>
         const password = document.getElementById("input-cpwd"); //selects confirm password input field
-        const submitBtn = document.querySelector('button[type="create"]'); //selects submit button
+        const submitBtn = document.querySelector('input[type="submit"]'); //selects submit button
         let error = document.createElement("span"); //creates a span object that will hold error message
         error.id = "error"; //sets id to the error message span object
 
