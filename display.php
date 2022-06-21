@@ -17,7 +17,7 @@ include 'connect.php';
    <div class="container">
        <H1 class="my-3">Dashboard</H1>
 
-       <button class="btn btn-primary my-5"><a href="home.php" class ="text-light"> Add User</a> 
+       <button class="btn btn-primary my-5"><a href="registration.php" class ="text-light"> Add User</a> 
        <button class="btn btn-danger my-5 mr-3"><a href="login.php" class ="text-light"> Log Out</a>
         </button>
        <table class="table">
