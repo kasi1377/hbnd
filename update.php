@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
     $Mobile=$_POST['mobile'];
     $Password=$_POST['password'];
 
-    $sql ="UPDATE registertable1 set id =$id,name = '$Name',email= '$Email',mobile ='$Mobile',password='$Password' where id = $id";
+    $sql ="UPDATE registertable1 set id =$id, username = '$Name',email= '$Email',mobile ='$Mobile',password='$Password' where id = $id";
     $result = mysqli_query($conn, $sql);
     if($result){
         // echo "Updated successfully!!";

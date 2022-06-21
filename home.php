@@ -13,12 +13,12 @@ include 'connect.php';
 // mysqli_select_db($conn, $db);
 
 if(isset($_POST['submit'])){
-    $Name=$_POST['name'];
+    $Name=$_POST['username'];
     $Email=$_POST['email'];
     $Mobile=$_POST['mobile'];
     $Password=$_POST['password'];
 
-    $sql ="insert into  democlass1 (name,email,mobile,password) values
+    $sql ="insert into registertable1 (username,email,mobile,password) values
     ('$Name','$Email','$Mobile','$Password')";
     $result = mysqli_query($conn, $sql);
     if($result){
