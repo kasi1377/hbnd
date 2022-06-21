@@ -26,7 +26,7 @@ mysqli_select_db($conn, $db);
 </head>
 <body>
     <div class="container-fluid">
-    <form action="" method="post" >
+    <form action="display.php" method="post" >
         
         <h1> Create an account</h1>
         <div class="user">
