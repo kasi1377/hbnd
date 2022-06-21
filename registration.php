@@ -82,6 +82,27 @@ $db = "register";
         <button class="btn btn-dark"><a href="login.php" class ="text-light"> Back to  login</a>
     </form>
     </div>
+    <?php
+    if(isset($_POST['create'])){
+        $Username=$_POST['username'];
+        $Email=$_POST['email'];
+        $Mobile=$_POST['mobile'];
+        $Password=$_POST['password'];
+        $recaptcha = $_POST['g-recaptcha-response'];
+
+        $secretKey ="6Lf9HYUgAAAAABWEbTD_sJogxi0UBomUbGmeiGEk";
+        // $url = "https://www.google.com/recaptcha/api/siteverify?secret = '.$secretKey.'&response ";
+        $url = "https://www.google.com/recaptcha/api/siteverify?secret='. $secretKey .'&response=" . $recaptcha;
+        $response = file_get_contents($url);
+        $response = json_decode($response);
+        if ($response->success == true) {
+        echo '<script>alert("Google reCAPTACHA verified")</script>';
+        } else {
+        echo '<script>alert("Error in Google reCAPTACHA")</script>';
+        }
+
+    }
+    ?>
     <!-- <div id="message">
         <h3>Password must contain the following:</h3>
         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
