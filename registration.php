@@ -6,11 +6,8 @@ $password = "";
 $db = "register";
 
 // // $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
-    
-
-    $conn= mysqli_connect($host, $user, $password);
-    mysqli_select_db($conn, $db);
-
+$conn= mysqli_connect($host, $user, $password);
+mysqli_select_db($conn, $db);
 
     if(isset($_POST['create'])){
         $Username=$_POST['username'];
@@ -28,10 +25,8 @@ $db = "register";
         } 
         else{
             die(mysqli_error($conn));
+        }
     }
-    
-
-}
     
 ?>
 
