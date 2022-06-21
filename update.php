@@ -15,7 +15,7 @@ $id = $_GET['updateid'];
 $sql = "select * from registertable1 where id= $id";
 $result= mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$Name = $row['name'];
+$Name = $row['username'];
 $Email = $row['email'];
 $Mobile = $row['mobile'];
 $Password = $row['password'];
