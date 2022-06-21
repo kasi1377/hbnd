@@ -81,28 +81,34 @@ $db = "register";
         <input type="submit" class="btn btn-light" name="create" value ="create" style="color: blueviolet;" >
         <button class="btn btn-dark"><a href="login.php" class ="text-light"> Back to  login</a>
     </form>
+    <!-- $secretKey ="6Lf9HYUgAAAAABWEbTD_sJogxi0UBomUbGmeiGEk"; -->
     </div>
     <?php
-    if(isset($_POST['create'])){
-        $Username=$_POST['username'];
-        $Email=$_POST['email'];
-        $Mobile=$_POST['mobile'];
-        $Password=$_POST['password'];
-        $recaptcha = $_POST['g-recaptcha-response'];
-
-        $secretKey ="6Lf9HYUgAAAAABWEbTD_sJogxi0UBomUbGmeiGEk";
-        // $url = "https://www.google.com/recaptcha/api/siteverify?secret = '.$secretKey.'&response ";
-        $url = "https://www.google.com/recaptcha/api/siteverify?secret='. $secretKey .'&response=" . $recaptcha;
-        $response = file_get_contents($url);
-        $response = json_decode($response);
-        if ($response->success == true) {
+if(! isset($_POST['create']) ) exit('You dont have any submitted data');
+ 
+if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+{
+     //your site secret key
+    $secret = '6Lf9HYUgAAAAABWEbTD_sJogxi0UBomUbGmeiGEk';
+    //get verify response data
+    $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+    $response = json_decode($verify);
+    if($response->success)
+    {
         echo '<script>alert("Google reCAPTACHA verified")</script>';
-        } else {
-        echo '<script>alert("Error in Google reCAPTACHA")</script>';
-        }
-
+ 
     }
-    ?>
+    else
+    {
+        exit('Google reCAPTCHA verification failed. please try again');
+    }
+}
+else
+{
+    exit('Please check recaptcha box');
+}    
+?>
+   
     <!-- <div id="message">
         <h3>Password must contain the following:</h3>
         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
