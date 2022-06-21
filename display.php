@@ -32,12 +32,12 @@ include 'connect.php';
                 </tr>
             </thead>
             <?php
-                $sql = "select * from democlass1 ";
+                $sql = "select * from registertable1";
                 $result = mysqli_query($conn, $sql);
                 if ($result){
                     while($row= mysqli_fetch_assoc($result)){
                         $id = $row['id'];
-                        $Name = $row['name'];
+                        $Name = $row['username'];
                         $Email = $row['email'];
                         $Mobile = $row['mobile'];
                         $Password = $row['password'];

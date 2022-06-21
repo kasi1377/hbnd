@@ -78,11 +78,11 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
             $Email=$_POST['email'];
             $Mobile=$_POST['mobile'];
             $Password=$_POST['password'];
-            $encrypted_pwd = md5($Password);
-                
+            $encrypted_pwd = password_hash($Password, PASSWORD_DEFAULT);
             $sql ="insert into  registertable1 (username,email,mobile,password) values
             ('$Username','$Email','$Mobile','$encrypted_pwd')";
             $result = mysqli_query($conn, $sql);
+            echo "$sql";
             if($result){
                 // echo "Data inserted successfully!!";
                 header('location:login.php');

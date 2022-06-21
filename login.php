@@ -52,12 +52,17 @@ mysqli_select_db($conn, $db);
                     if(isset($_POST['username'])){
                         $Username = $_POST['username'];
                         $Password= $_POST['password'];
-                        $sql = "select * from registertable1 where username='".$Username."' AND password = '".$Password."' limit 1";
+                        $sql = "select * from registertable1 where username='".$Username."'";
                         $result = mysqli_query($conn, $sql);
                         if(mysqli_num_rows($result)==1){
                             // echo "Welcome!! You have successfully login.";
-                            header('location:display.php');
-                            exit();
+                            $row = mysqli_fetch_assoc($result);
+                            if(password_verify($Password, $row['password'])==1) {
+                                header('location:display.php');
+                            }
+                            else {
+                                echo "<p id = 'error'>You have entered incorrect username or password</p>";
+                            }
                         }else{
                                 echo "<p id ='error'> Try again!! You have entered incorrrect username or password</p>";
                                 exit();

@@ -7,7 +7,7 @@
 // $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
 // $conn= mysqli_connect($host, $user, $password);
 
-$conn = new mysqli('localhost','root', '', 'demo1');
+$conn = new mysqli('localhost','root', '', 'register');
 // mysqli_select_db($conn, $db);
 
 // if ($conn) {
